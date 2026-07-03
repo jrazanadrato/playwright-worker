@@ -1,0 +1,14 @@
+services:
+  playwright-worker:
+    build:
+      context: .
+    container_name: playwright-worker
+    restart: unless-stopped
+    environment:
+      - WORKER_TOKEN=${WORKER_TOKEN:-change-moi}
+    volumes:
+      - ./captures:/app/captures
+    ports:
+      - "3000:3000"
+    shm_size: "1gb"
+    mem_limit: 2g
